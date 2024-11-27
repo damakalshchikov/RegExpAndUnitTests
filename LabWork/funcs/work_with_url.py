@@ -2,7 +2,7 @@ import requests
 from requests import Response
 
 
-def get_content_from_url(url):
+def get_content_from_url(url: str) -> str:
     """Ф-ия запроса к URL"""
 
     try:
