@@ -1,8 +1,10 @@
 import funcs
+import regexp_classes
 
 
 def main() -> None:
     choice = input("Где искать номера карт? (1 - ввод текста, 2 - URL, 3 - файл): ")
+    regexp_finder: regexp_classes.RegExpFinder = regexp_classes.RegExpFinder(pattern)
 
     match choice:
         case "1":
@@ -21,7 +23,7 @@ def main() -> None:
         case _:
             print("Неверный выбор")
 
-    matches = funcs.find_credit_card_numbers(text)
+    matches = regexp_finder.find_regexp(text)
     if matches:
         print("Найденные номера карт:")
         for match in matches:
