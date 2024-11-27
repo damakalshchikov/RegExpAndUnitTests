@@ -2,9 +2,9 @@ import funcs
 import regexp_classes
 
 
-def main() -> None:
-    choice = input("Где искать номера карт? (1 - ввод текста, 2 - URL, 3 - файл): ")
+def main(pattern: str) -> None:
     regexp_finder: regexp_classes.RegExpFinder = regexp_classes.RegExpFinder(pattern)
+    choice: str = input("Где искать номера карт? (1 - ввод текста, 2 - URL, 3 - файл): ")
 
     match choice:
         case "1":
@@ -33,6 +33,7 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    regexp_pattern: str = r"\b(?:\d{4}[-\s]?){3}\d{4}\b"
+    main(regexp_pattern)
 else:
     print("Запускай main.py")
