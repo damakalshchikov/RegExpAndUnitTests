@@ -23,13 +23,13 @@ def main(pattern: str) -> None:
 
             try:
                 with open(file_path, "r", encoding="utf-8") as file:
-                    text = file.read()
+                    text: str = file.read()
             except FileNotFoundError:
                 print("Файл не найден")
         case _:
             print("Неверный выбор")
 
-    matches = regexp_finder.find_regexp(text)
+    matches: list[str] = regexp_finder.find_regexp(text)
     if matches:
         print("Найденные номера карт:")
         for match in matches:
@@ -39,7 +39,14 @@ def main(pattern: str) -> None:
 
 
 if __name__ == "__main__":
-    regexp_pattern: str = r"\b(?:\d{4}[-\s]?){3}\d{4}\b"
+    regexp_pattern: str = r"\b(?:\d{4}(?:[ -])?){3}\d{4}\b"
+    # \b - граница слова
+    # (?:) - группировка символов
+    # \d{4} - ровно 4 цифры
+    # (?:[ -])? - могут встречаться символ пробела или -
+    # (?:\d{4}(?:[ -])?){3} - три группы по 4 цифры, за которыми может следовать пробел или -
+    # \d{4} - последняя группа из 4 цифр
+    # \b - граница слова
     main(regexp_pattern)
 else:
     print("Запускай main.py")
