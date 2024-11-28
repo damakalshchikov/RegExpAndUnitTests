@@ -10,8 +10,14 @@ def main(pattern: str) -> None:
         case "1":
             text = input("Введите текст: ")
         case "2":
-            url = input("Введите URL: ")
-            text = funcs.get_content_from_url(url)
+            url: str = input("Введите URL: ")
+            raw_html: str = funcs.get_content_from_url(url)
+
+            if not raw_html:
+                print('Ошибка: не удалось загрузить данные с указанного URL')
+                return
+
+            text: str = funcs.extract_text_from_html(raw_html)
         case "3":
             file_path = input("Введите путь к файлу: ")
 
