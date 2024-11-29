@@ -8,13 +8,13 @@ def main(pattern: str) -> None:
 
     match choice:
         case "1":
-            text = input("Введите текст: ")
+            text: str = input("Введите текст: ")
         case "2":
             url: str = input("Введите URL: ")
             raw_html: str = funcs.get_content_from_url(url)
 
             if not raw_html:
-                print('Ошибка: не удалось загрузить данные с указанного URL')
+                print("Ошибка: не удалось загрузить данные с указанного URL")
                 return
 
             text: str = funcs.extract_text_from_html(raw_html)
