@@ -31,3 +31,20 @@ class TestFindCardNumbers(unittest.TestCase):
             self.regexp_finder.find_regexp("1234-1234-1234-123"),
             []
         )
+
+    def test_find_card_numbers_with_some_text(self):
+        # Тестируем, что среди текста найдутся номера карт
+        text = """
+                4111 1111 1111 1111 some random text
+                5500-0000-0000-0004 not a number
+                6011 0000-0000-0004
+                3400 0000 0000 009 and something else
+                """
+        self.assertEqual(
+            self.regexp_finder.find_regexp(text),
+            [
+                "4111 1111 1111 1111",
+                "5500-0000-0000-0004",
+                "6011 0000-0000-0004",
+            ]
+        )
